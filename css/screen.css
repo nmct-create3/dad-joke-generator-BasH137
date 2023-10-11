@@ -33,6 +33,10 @@
     --global-color-neutral-800: #3B3B3B;
     --global-color-neutral-900: #222222;
 
+    --global-primary-color: #6E78FF;
+    --global-primary-shade: #5C6CFF;
+    --global-primary-tint: #AEBDFF;
+
     /* global page settings */
     --global-page-backgroundColor: var(--global-color-neutral-000);
     --global-page-color: var(--global-color-neutral-900);
@@ -100,6 +104,7 @@ html {
 
 body {
     margin: 0;
+    font-family: Helvetica, Arial, sans-serif;
 }
 
 *,
@@ -518,6 +523,59 @@ input::placeholder {
     ---
     Utility classes to put specific colors onto elements
 */
+
+.u-center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.c-joke-header{
+    margin-top: var(--global-whitespace-lg);
+    background-color: var(--global-primary-tint);
+    border-radius: 50%;
+    padding: 1rem;
+}
+
+.joke{
+    font-family: 'Comic Sans MS', cursive;
+    font-size: 1.2em;
+    color: var(--global-primary-color);
+}
+
+.c-footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.btn-new-joke {
+    /* background-color: var(--global-color-primary-500);  */
+    /* color: var(--global-color-neutral-000); */
+    border: none;
+    border-radius: 4px;
+    padding: var(--global-whitespace-sm) var(--global-whitespace-md);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color var(--global-transitionDuration-alpha) var(--global-transitionEasing-out);
+
+    background-color: var(--global-primary-shade);
+    color: white;
+  }
+  
+  .btn-new-joke:hover {
+    background-color: var(--global-color-primary-600);
+  }
+  
+  .btn-new-joke:active {
+    background-color: var(--global-color-primary-700); 
+  }
+
+  .btn-new-joke img {
+    max-width: 10rem;
+    max-height: 5rem;
+  }
 
 .u-color-neutral-500 {
     color: var(--global-color-neutral-500);
