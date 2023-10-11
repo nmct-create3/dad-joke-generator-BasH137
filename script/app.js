@@ -1,29 +1,30 @@
 let newJokeBtn, jokeElement;
 
-const init = function () {
-  console.log("script loaded");
+const init = () => {
+  console.log("Script loaded");
   newJokeBtn = document.querySelector("#new-btn-joke");
   jokeElement = document.querySelector("#joke");
 
   newJokeBtn.addEventListener("click", getJoke);
 };
 
-const getJoke = async function () {
+const getJoke = async () => {
   console.log("getJoke()");
-  fetch("https://icanhazdadjoke.com/slack")
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
+  try {
+    const response = await fetch("https://icanhazdadjoke.com/slack");
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
 
-      const jokeText = data.attachments[0].text;
-      const jokeFallback = data.attachments[0].fallback;
+    const data = await response.json();
+    console.log(data);
 
-      if (jokeText !== "" && jokeText !== undefined) {
-        jokeElement.innerHTML = jokeText;
-      } else {
-        jokeElement.innerHTML = jokeFallback;
-      }
-    });
+    const jokeText = data.attachments[0].text || data.attachments[0].fallback;
+    jokeElement.innerHTML = jokeText;
+  } catch (error) {
+    console.error("An error occurred:", error);
+    jokeElement.innerHTML = "Failed to fetch a joke. Please try again later.";
+  }
 };
 
 init();
