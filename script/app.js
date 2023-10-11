@@ -8,7 +8,7 @@ const init = function () {
   newJokeBtn.addEventListener("click", getJoke);
 };
 
-const getJoke = function () {
+const getJoke = async function () {
   console.log("getJoke()");
   fetch("https://icanhazdadjoke.com/slack")
     .then((response) => response.json())
